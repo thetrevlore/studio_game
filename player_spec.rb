@@ -33,4 +33,27 @@ describe Player do
     @player.blam
     @player.health.should == @initial_health - 10
   end
+
+  context "with a health greater than 100" do
+    before do
+      @initial_health = 150
+      @player = Player.new('larry', @initial_health)
+    end
+
+    it "is strong" do
+      # @player.strong?.should be_truthy
+      @player.should be_strong
+    end
+  end
+
+  context "with a health less than or equal to 100" do
+    before do
+      @initial_health = 100
+      @player = Player.new('moe', @initial_health)
+    end
+
+    it "is wimpy" do
+      @player.should_not be_strong
+    end
+  end
 end
