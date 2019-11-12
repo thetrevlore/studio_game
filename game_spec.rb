@@ -15,19 +15,19 @@ describe Game do
 
   it "increases health with a high roll(5 or 6)" do
     allow_any_instance_of(Die).to receive(:roll).and_return(5)
-    @game.play
-    @player.health.should == @initial_health + 15
+    @game.play(2)
+    @player.health.should == @initial_health + (15 * 2)
   end
 
   it "skips health modification with a medium roll(3 or 4)" do
     allow_any_instance_of(Die).to receive(:roll).and_return(3)
-    @game.play
+    @game.play(2)
     @player.health.should == @initial_health
   end
 
   it "decreases health with a low roll(1 or 2)" do
     allow_any_instance_of(Die).to receive(:roll).and_return(1)
-    @game.play
-    @player.health.should == @initial_health - 10
+    @game.play(2)
+    @player.health.should == @initial_health - (10 * 2)
   end
 end
