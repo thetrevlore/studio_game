@@ -28,6 +28,9 @@ class Game
     end
 
     1.upto(rounds) do |round_num|
+      if block_given?
+        break if yield
+      end
       puts "\nRound #{round_num}:"
       
       @players.each do |player|
@@ -60,6 +63,9 @@ class Game
 
     sorted_players.each do |player|
       puts "\n#{player.name}'s point totals:"
+      player.each_found_treasure do |treasure|
+        puts "#{treasure.points} total #{treasure.name} points"
+      end
       puts "#{player.points} grand total points"
     end
 
